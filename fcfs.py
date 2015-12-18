@@ -5,10 +5,10 @@ import copy
 
 class FCFS(object):
     '''  Algoritmo de escalonamento da CPU que utiliza a politica "First Come, First Serve" para atender as requisicoes. '''
-    # 
-    # def __init__(self):
-    #     ''' Inicializa o algoritmo FCFS. '''
-    #     pass
+
+    def __init__(self):
+        ''' Inicializa o algoritmo FCFS. '''
+        pass
 
     def execute(self, inputs):
         ''' Metodo que executa o algoritmo de escalonamento com a politica "First Come, First Serve". '''

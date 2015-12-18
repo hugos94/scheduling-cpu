@@ -21,12 +21,12 @@ def main():
 
         fcfs = FCFS() # Inicializa o algoritmo FCFS
         fcfs.execute(inputs) # Executa o algoritmo FCFS
-        #
-        # sstf = SSTF(sectors, initial_sector) # Inicializa o algoritmo SSTF
-        # sstf.execute(inputs) # Executa o algoritmo SSTF
-        #
-        # elevador = Elevador(sectors, initial_sector) # Inicializa o algoritmo Elevador
-        # elevador.execute(inputs) # Executa o algoritmo Elevador
+
+        sjf = SJF() # Inicializa o algoritmo SSTF
+        sjf.execute(inputs) # Executa o algoritmo SSTF
+
+        # rr = RR() # Inicializa o algoritmo Elevador
+        # rr.execute(inputs) # Executa o algoritmo Elevador
 
 
 if __name__ == '__main__':
