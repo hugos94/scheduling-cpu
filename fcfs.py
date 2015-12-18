@@ -10,18 +10,36 @@ class FCFS(object):
         ''' Inicializa o algoritmo FCFS. '''
         pass
 
-
     def execute(self, inputs):
         ''' Metodo que executa o algoritmo de escalonamento com a politica "First Come, First Serve". '''
 
-        current_position = self.initial_sector # Inicializa o setor atual como o setor inicial
-
-        sum_distance = 0
-
         self.inputs = copy.deepcopy(inputs) # Realiza a copia profunda das entradas para uma variavel local
 
-        for sector in self.inputs: # Percorre as entradas
-            sum_distance += abs(current_position - sector) # Realiza o somatorio da distancia da entrada
-            current_position = sector # Modifica o setor atual para o setor escolhido
+        current_position = 0
 
-        print("FCFS " + str(sum_distance)) # Imprime o resultado final
+        current_time = 0
+        return_time = 0.0
+        response_time = 0.0
+        waiting_time = 0.0
+
+        tam_input = len(self.inputs)
+
+        while self.inputs:
+            entry = self.inputs[current_position]
+
+            chegada = int(entry[0])
+            duracao = int(entry[1])
+            if(chegada > current_time):
+                current_time = chegada
+            response_time += abs(current_time - chegada) # Calcula o tempo de resposta subtraindo o tempo atual e o tempo de chegada do processo
+            current_time += duracao
+            return_time += current_time - chegada
+            self.inputs.pop(0)
+
+
+        avg_return = (return_time/tam_input)
+        avg_response = (response_time/tam_input)
+        avg_waiting = 0# (waiting_time/tam_input)
+
+
+        print("FCFS " + str(avg_return) + " " + str(avg_response) + " " + str(avg_waiting)) # Imprime o resultado final

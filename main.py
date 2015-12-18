@@ -19,12 +19,8 @@ def main():
 
         inputs = fm.read_input(filename) # Le o arquivo e retorna em forma de lista
 
-        for i in inputs:
-            for j in i:
-                print(j)
-
         fcfs = FCFS() # Inicializa o algoritmo FCFS
-        #fcfs.execute(inputs) # Executa o algoritmo FCFS
+        fcfs.execute(inputs) # Executa o algoritmo FCFS
         #
         # sstf = SSTF(sectors, initial_sector) # Inicializa o algoritmo SSTF
         # sstf.execute(inputs) # Executa o algoritmo SSTF
