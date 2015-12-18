@@ -20,14 +20,11 @@ def main():
         inputs = fm.read_input(filename) # Le o arquivo e retorna em forma de lista
 
         for i in inputs:
-            print(i)
+            for j in i:
+                print(j)
 
-        # sectors = inputs.pop(0) # Retira a quantidade de setores da lista e armazena na variavel sectors
-        #
-        # initial_sector = inputs.pop(0) # Retira a posicao inicial do cilidro e armazena na variavel initial_sector
-        #
-        # fcfs = FCFS(sectors, initial_sector) # Inicializa o algoritmo FCFS
-        # fcfs.execute(inputs) # Executa o algoritmo FCFS
+        fcfs = FCFS() # Inicializa o algoritmo FCFS
+        #fcfs.execute(inputs) # Executa o algoritmo FCFS
         #
         # sstf = SSTF(sectors, initial_sector) # Inicializa o algoritmo SSTF
         # sstf.execute(inputs) # Executa o algoritmo SSTF
