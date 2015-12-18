@@ -14,6 +14,8 @@ class RR(object):
         ''' Metodo que executa o algoritmo de escalonamento com a politica "Round Robin". '''
 
         self.inputs = copy.deepcopy(inputs) # Realiza a copia profunda das entradas para uma variavel local
+        
+        quantum = 2 # Tempo fixo de execucao para cada usuario
 
         current_time = int(self.inputs[0][0]) # Inicializa o tempo atual com o tempo de chegada da primeira entrada
         return_time = 0.0 # Tempo de retorno
