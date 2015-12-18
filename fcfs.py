@@ -5,10 +5,10 @@ import copy
 
 class FCFS(object):
     '''  Algoritmo de escalonamento da CPU que utiliza a politica "First Come, First Serve" para atender as requisicoes. '''
-
-    def __init__(self):
-        ''' Inicializa o algoritmo FCFS. '''
-        pass
+    # 
+    # def __init__(self):
+    #     ''' Inicializa o algoritmo FCFS. '''
+    #     pass
 
     def execute(self, inputs):
         ''' Metodo que executa o algoritmo de escalonamento com a politica "First Come, First Serve". '''
@@ -39,7 +39,7 @@ class FCFS(object):
 
         avg_return = (return_time/tam_input) # Refere-se ao tempo transcorrido entre o momento da entrada do processo no sistema e o seu término.
         avg_response = (response_time/tam_input) # Intervalo de tempo entre a chegada do processo e o início de sua execução.
-        avg_waiting = 0# (waiting_time/tam_input) #  Soma dos períodos em que um processo estava no seu estado pronto.
+        avg_waiting = avg_response # Soma dos períodos em que um processo estava no seu estado pronto. (No algoritmo FCFS o tempo medio de resposta e igual ao tempo medio de espera)
 
 
         print("FCFS " + str(avg_return) + " " + str(avg_response) + " " + str(avg_waiting)) # Imprime o resultado final
