@@ -25,8 +25,8 @@ def main():
         sjf = SJF() # Inicializa o algoritmo SSTF
         sjf.execute(inputs) # Executa o algoritmo SSTF
 
-        # rr = RR() # Inicializa o algoritmo Elevador
-        # rr.execute(inputs) # Executa o algoritmo Elevador
+        rr = RR() # Inicializa o algoritmo Elevador
+        rr.execute(inputs) # Executa o algoritmo Elevador
 
 
 if __name__ == '__main__':
