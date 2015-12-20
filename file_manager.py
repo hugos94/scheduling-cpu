@@ -6,6 +6,7 @@ import os.path
 class FileManager(object):
     """FileManager e a classe responsavel por ler e escrever em arquivos"""
 
+
     def read_input(self, input_file):
         """ Retorna o conteudo do arquivo de entrada na forma de lista. """
 

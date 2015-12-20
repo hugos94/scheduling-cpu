@@ -7,6 +7,7 @@ from fcfs import *
 from sjf import *
 from rr import *
 
+
 def main():
 
     filename = sys.argv[-1] # Recebe o nome do arquivo do console
