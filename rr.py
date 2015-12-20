@@ -25,29 +25,28 @@ class RR(object):
         tam_input = len(self.inputs) # Tamanho da lista de entradas
 
         while self.inputs: # Enquanto a lista nao for vazia, execute
+            active_list = []
+            for position,i in enumerate(self.inputs):
+                if (int(i[0]) <= current_time):
+                    active_list.append(position)
+
             remove_list = []
-            for position, entry in enumerate(self.inputs): # Iteracao entre as entradas
-                chegada = int(entry[0]) # Converte o primeiro campo da entrada em int
-                duracao = int(entry[1]) # Converte o segundo campo da entrada em int
+            for i in active_list:
+                i = int(i)
+                self.inputs[i][1] = str(int(self.inputs[i][1]) - quantum)
+                current_time += quantum
+                if (int(self.inputs[i][1]) <= 0):
+                    return_time += abs(int(self.inputs[i][1])-current_time)
+                    remove_list.append(self.inputs.index(self.inputs[i]))
 
-                if (chegada <= current_time):
-                    self.inputs[position][1] = str(duracao - quantum)
-                    current_time += quantum
-
-                duracao = int(self.inputs[position][1])
-                if (duracao <= 0):
-                    remove_list.append(position)
-                    return_time += abs(current_time - chegada)
-
+            remove_list.reverse()
             for i in remove_list:
-                self.inputs.remove(self.inputs[i])
-            # response_time += abs(current_time) # Calcula o tempo de resposta subtraindo o tempo atual e o tempo de chegada do processo
-            # current_time += best_time # Atualiza o tempo atual como a soma do tempo atual e o do melhor tempo
-            # return_time += abs(current_time) # Calcula o tempo de retorno subtraindo o tempo atual pelo tempo de chegada do processo
-            # self.inputs.remove(best_choice) # Remove o processo da lista de processos
+                self.inputs.pop(i)
 
         avg_return = (return_time/tam_input) # Refere-se ao tempo transcorrido entre o momento da entrada do processo no sistema e o seu término.
         avg_response = 0#(response_time/tam_input) # Intervalo de tempo entre a chegada do processo e o início de sua execução.
         avg_waiting = 0#avg_response # Soma dos períodos em que um processo estava no seu estado pronto. (No algoritmo FCFS o tempo medio de resposta e igual ao tempo medio de espera)
 
-        print("RR " + str(round(avg_return,1)) + " " + str(round(avg_response,1)) + " " + str(round(avg_waiting,1))) # Imprime o resultado final
+        out = "RR " + str(round(avg_return,1)) + " " + str(round(avg_response,1)) + " " + str(round(avg_waiting,1)) # Armazena a resposta do algoritmo
+
+        print(out.replace(".",",")) # Imprime o resultado final trocando os pontos por virgulas

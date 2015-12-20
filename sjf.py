@@ -46,4 +46,6 @@ class SJF(object):
         avg_response = (response_time/tam_input) # Intervalo de tempo entre a chegada do processo e o início de sua execução.
         avg_waiting = avg_response # Soma dos períodos em que um processo estava no seu estado pronto. (No algoritmo FCFS o tempo medio de resposta e igual ao tempo medio de espera)
 
-        print("SJF " + str(round(avg_return,1)) + " " + str(round(avg_response,1)) + " " + str(round(avg_waiting,1))) # Imprime o resultado final
+        out = "SJF " + str(round(avg_return,1)) + " " + str(round(avg_response,1)) + " " + str(round(avg_waiting,1)) # Armazena a resposta do algoritmo
+
+        print(out.replace(".", ",")) # Imprime o resultado final trocando os pontos por virgulas
