@@ -47,10 +47,11 @@ class RR(object):
             process[4] += abs(current_time - process[3]) # Calcula o tempo de espera do processo
 
             process[1] = str(int(process[1]) - quantum) # Subtrai o tempo de execucao do tempo de execucao total do processo
-            reduction_quantum = 0
-            if (int(process[1]) < 0.0):
-                reduction_quantum = int(process[1])
-            current_time += quantum + reduction_quantum # Incrementa o tempo atual com o quantum
+
+            reduction_quantum = 0 # Reducao quando o tempo de execucao do processo e menor que o quantum
+            if (int(process[1]) < 0.0): # Verifica se o tempo de execucao do processo ficou negativo
+                reduction_quantum = int(process[1]) # Pega o valor que ficou sobrando do quantum
+            current_time += quantum + reduction_quantum # Incrementa o tempo atual com o quantum, mas remove o tempo que ficou restante se houver
 
             process[3] = current_time # Atualiza a variavel que armazena a ultima vez que o programa executou
 
