@@ -38,7 +38,6 @@ class RR(object):
 
         while processes or round_list: # Executar loop enquanto a lista de entradas e a lista de execucao circular for vazia
             process = round_list.pop(0) # Extrai o primeiro processo da lista dos processos prontos
-            #print ("Processo atual: " +  str(process))
 
             if(process[2] == "F"): # Verifica se o processo esta sendo executado pela primeira vez
                 response_time += abs(current_time - int(process[0])) # Se for a primeira vez, calcula o tempo de resposta do processo
@@ -73,8 +72,6 @@ class RR(object):
                 waiting_time += process[4] # Calcula o tempo de espera do processo
             else: # Se nao terminou a execucao completamente
                 round_list.append(process) # Coloca o processo no final da lista de processos prontos
-            #print("TEMPO: " + str(current_time))
-
 
         avg_return = (return_time/tam_input) # Refere-se ao tempo transcorrido entre o momento da entrada do processo no sistema e o seu término.
         avg_response = (response_time/tam_input) # Intervalo de tempo entre a chegada do processo e o início de sua execução.
