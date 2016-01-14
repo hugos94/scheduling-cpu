@@ -29,7 +29,7 @@ class RR(object):
                 process.append("F") # Adiciona ao processo uma flag para contar o tempo de resposta
                 process.append(int(process[0])) # Adiciona ao processo uma variavel que contera o tempo em que o processo parou
                 process.append(0) # Adiciona ao processo uma variavel que contera o tempo de espera
-                round_list.append(process) # Adiciona o presso a lista circular
+                round_list.append(process) # Adiciona o processo a lista circular
                 actives.append(position) # Armazena a posicao do processo para posterior remocao
 
         actives.reverse() # Inverte a lista de processos a serem removidos da entrada
@@ -38,6 +38,7 @@ class RR(object):
 
         while processes or round_list: # Executar loop enquanto a lista de entradas e a lista de execucao circular for vazia
             process = round_list.pop(0) # Extrai o primeiro processo da lista dos processos prontos
+            #print ("Processo atual: " +  str(process))
 
             if(process[2] == "F"): # Verifica se o processo esta sendo executado pela primeira vez
                 response_time += abs(current_time - int(process[0])) # Se for a primeira vez, calcula o tempo de resposta do processo
@@ -45,17 +46,13 @@ class RR(object):
 
             process[4] += abs(current_time - process[3]) # Calcula o tempo de espera do processo
 
-
             process[1] = str(int(process[1]) - quantum) # Subtrai o tempo de execucao do tempo de execucao total do processo
-            current_time += quantum # Incrementa o tempo atual com o quantum
+            reduction_quantum = 0
+            if (int(process[1]) < 0.0):
+                reduction_quantum = int(process[1])
+            current_time += quantum + reduction_quantum # Incrementa o tempo atual com o quantum
 
             process[3] = current_time # Atualiza a variavel que armazena a ultima vez que o programa executou
-
-            if(int(process[1]) <= 0.0): # Verifica se o processo terminou a sua execucao totalmente
-                return_time += abs(current_time - int(process[0])) # Calcula o tempo de retorno do processo
-                waiting_time += process[4] # Calcula o tempo de espera do processo
-            else: # Se nao terminou a execucao completamente
-                round_list.append(process) # Coloca o processo no final da lista de processos prontos
 
             remove_list = [] # Lista que armazena as posicoes dos processos a serem removidos da entrada
             for position, proc in enumerate(processes): # Iteracao nos processos restantes na entrada
@@ -69,6 +66,13 @@ class RR(object):
             remove_list.reverse() # Inverte a lista de remocao
             for remove in remove_list: # Iteracao na lista de remocao
                 processes.pop(remove) # Remove o processo ativo da lista de entrada
+
+            if(int(process[1]) <= 0.0): # Verifica se o processo terminou a sua execucao totalmente
+                return_time += abs(current_time - int(process[0])) # Calcula o tempo de retorno do processo
+                waiting_time += process[4] # Calcula o tempo de espera do processo
+            else: # Se nao terminou a execucao completamente
+                round_list.append(process) # Coloca o processo no final da lista de processos prontos
+            #print("TEMPO: " + str(current_time))
 
 
         avg_return = (return_time/tam_input) # Refere-se ao tempo transcorrido entre o momento da entrada do processo no sistema e o seu término.
